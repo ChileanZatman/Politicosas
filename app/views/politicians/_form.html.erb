@@ -1,0 +1,57 @@
+<%= form_with(model: politician) do |form| %>
+  <% if politician.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(politician.errors.count, "error") %> prohibited this politician from being saved:</h2>
+
+      <ul>
+        <% politician.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :birthdate %>
+    <%= form.date_select :birthdate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :position %>
+    <%= form.text_field :position %>
+  </div>
+
+  <div class="field">
+    <%= form.label :political_compass %>
+    <%= form.text_field :political_compass %>
+  </div>
+
+  <div class="field">
+    <%= form.label :previous_position %>
+    <%= form.text_field :previous_position %>
+  </div>
+
+  <div class="field">
+    <%= form.label :education %>
+    <%= form.text_field :education %>
+  </div>
+
+  <div class="field">
+    <%= form.label :president %>
+    <%= form.check_box :president %>
+  </div>
+
+  <div class="field">
+    <%= form.label :political_party_id %>
+    <%= form.text_field :political_party_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

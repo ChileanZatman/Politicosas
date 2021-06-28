@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  link: MyString
+  release: 2021-06-28
+  email: MyString
+  origin: one
+  origin_type: Origin
+
+two:
+  title: MyString
+  link: MyString
+  release: 2021-06-28
+  email: MyString
+  origin: two
+  origin_type: Origin

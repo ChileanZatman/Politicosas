@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @political_party.name %>
+</p>
+
+<p>
+  <strong>Founding:</strong>
+  <%= @political_party.founding %>
+</p>
+
+<p>
+  <strong>Political compass:</strong>
+  <%= @political_party.political_compass %>
+</p>
+
+<p>
+  <strong>Coalition:</strong>
+  <%= @political_party.coalition %>
+</p>
+
+<p>
+  <strong>Founding ideology:</strong>
+  <%= @political_party.founding_ideology %>
+</p>
+
+<p>
+  <strong>Principles:</strong>
+  <%= @political_party.principles %>
+</p>
+
+<%= link_to 'Edit', edit_political_party_path(@political_party) %> |
+<%= link_to 'Back', political_parties_path %>

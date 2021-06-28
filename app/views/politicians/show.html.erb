@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @politician.name %>
+</p>
+
+<p>
+  <strong>Birthdate:</strong>
+  <%= @politician.birthdate %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @politician.position %>
+</p>
+
+<p>
+  <strong>Political compass:</strong>
+  <%= @politician.political_compass %>
+</p>
+
+<p>
+  <strong>Previous position:</strong>
+  <%= @politician.previous_position %>
+</p>
+
+<p>
+  <strong>Education:</strong>
+  <%= @politician.education %>
+</p>
+
+<p>
+  <strong>President:</strong>
+  <%= @politician.president %>
+</p>
+
+<p>
+  <strong>Political party:</strong>
+  <%= @politician.political_party_id %>
+</p>
+
+<%= link_to 'Edit', edit_politician_path(@politician) %> |
+<%= link_to 'Back', politicians_path %>
