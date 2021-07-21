@@ -1,9 +1,9 @@
 <h1>Political Parties</h1>
   <% if logged_in? %>
-    <%= form_tag('modpartidos', method: :get) do %>
-      <%= text_field_tag(:search, params[:search]) %>
-      <%= submit_tag ("Search") %>
-    <% end %>
+      <%= form_tag('modpartidos', method: :get) do %>
+        <%= text_field_tag(:search, params[:search]) %>
+        <%= submit_tag ("Search") %>
+      <% end %>
     <table>
       <thead>
         <tr>
@@ -33,6 +33,9 @@
         <% end %>
       </tbody>
     </table>
+        <div class="digg_pagination  mt-3 ">
+          <%= will_paginate @parties %>
+        </div>
     
     <br>
     

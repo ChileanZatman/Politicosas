@@ -10,7 +10,7 @@
       <hr/>
     </div>
       <div class="row row-cols-1 row-cols-lg-2 g-3 mb-2">
-        <% @politicians.each do |politician| %>
+        <% @politicians.where(political_party_id: party.id).each do |politician| %>
           <div class="col">
             <div class="card news-card overflow-hidden">
               <a class="row g-0 h-100" href="/politicians/<%= politician.id %>" target="_blank">

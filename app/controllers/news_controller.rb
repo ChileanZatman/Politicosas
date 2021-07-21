@@ -22,7 +22,7 @@ class NewsController < ApplicationController
   end
   
   def record
-     @news = News.where(state: false).order(params[date: :asc]).paginate(page: params[:page], per_page: 8)
+      @news = News.where(state: true).order(params[date: :asc]).paginate(page: params[:page], per_page: 8)
   end
   
   # GET /news/1/edit
@@ -71,6 +71,10 @@ class NewsController < ApplicationController
   
   def approve
     @news.update(state: true)
+    respond_to do |format|
+      format.html { redirect_to '/modnoticias', notice: 'News was successfully updated.' }
+      format.json { head :no_content }
+    end
   end  
   
   private

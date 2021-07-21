@@ -11,9 +11,9 @@ class PoliticalPartiesController < ApplicationController
   # GET /political_parties.json
   def mod
     if params[:search]
-      @political_parties = PoliticalParty.where("name LIKE :search OR coalition LIKE :search", search: "%#{params[:search]}%")
+      @political_parties = PoliticalParty.where("name LIKE :search OR coalition LIKE :search", search: "%#{params[:search]}%").paginate(page: params[:page], per_page: 10)
     else
-      @political_parties = PoliticalParty.all
+      @political_parties = PoliticalParty.all.paginate(page: params[:page], per_page: 10)
     end
   end
 
@@ -56,7 +56,7 @@ class PoliticalPartiesController < ApplicationController
   def update
     respond_to do |format|
       if @political_party.update(political_party_params)
-        format.html { redirect_to @political_party, notice: 'Political party was successfully updated.' }
+        format.html { redirect_to '/modpartidos', notice: 'Political party was successfully updated.' }
         format.json { render :show, status: :ok, location: @political_party }
       else
         format.html { render :edit }
@@ -70,7 +70,7 @@ class PoliticalPartiesController < ApplicationController
   def destroy
     @political_party.destroy
     respond_to do |format|
-      format.html { redirect_to political_parties_url, notice: 'Political party was successfully destroyed.' }
+      format.html { redirect_to '/modpartidos', notice: 'Political party was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -1,0 +1,50 @@
+<% if logged_in? %>
+<center>
+  <h1 class="mt-3">Historial</h1>
+  <div class="row row-cols-1 g-3 mt-2 max-width-900 align-self-center">
+    <div class="btn-group my-3">
+      <a href="/modnoticias" class="btn btn-primary" aria-current="page">Pendientes</a>
+      <a href="#" class="btn btn-primary active">Historial</a>
+    </div>
+    <!--<%= form_tag('historial', method: :get) do %>
+      <%= text_field_tag(:search, params[:search], placeholder: "Titulo", class:"form-control w-75 mx-0") %>
+      <%= submit_tag ("Search"), class:"btn btn-primary mb-3" %>
+    <% end %>-->
+    <% @news.each do |news| %>
+      <div class="col">
+        <div class="card news-card overflow-hidden ">
+          <div class="row g-0 h-100">
+            <div class="col-4 h-100">
+              <img src="https://via.placeholder.com/400x300" class="h-100 w-100 rounded-start">
+            </div>
+            <div class="col-6">
+              <div class="card-body h-100 text-start">
+                <h5><%= news.title %></h5>
+                <p class="mb-2"><%= news.link %></p>
+                <p class="mb-2"><%= news.origin.name %></p>
+                <p class="mb-2"><%= news.release %></p>
+                <!--<p class="card-text"><small class="text-primary"><%= news.release %></small></p>-->
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="btn-group-vertical h-100 w-100" role="group">
+                <%= link_to news.link, class: "btn btn-secondary d-flex align-items-center justify-content-center" do %>
+                  <span>Ingresar</span>
+                <% end %>
+                <%= link_to news, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger d-flex align-items-center justify-content-center" do %>
+                  <span>Eliminar</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="digg_pagination  mt-3 ">
+      <%= will_paginate @news %>
+    </div>
+  </div>
+</center>
+<% else %>
+    <% controller.redirect_to root_path %>
+<% end %>
