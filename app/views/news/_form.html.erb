@@ -10,8 +10,26 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="row bg-white rounded px-2 py-4 my-4">
+    <h5 class="mb-4">Agrega una noticia sobre <%= suggestion_to_name %> </h5>
+    <div class="col">
+      <%= form.text_field :title, class: "form-control mb-3", placeholder: "Titulo", required: true %>
+      <%= form.text_field :link, class: "form-control", placeholder: "Enlace", required: true %>
+    </div>
+    <div class="col d-flex flex-column ">
+      <%= form.email_field :email, class: "form-control mb-3", placeholder: "Correo", required: true %>
+      <div class="d-flex flex-row">
+        <span class="me-2 flex-grow-1"><strong>Fecha Noticia:</strong></span>
+        <%= form.date_select :release, :with_css_classes => {:year => "form-select-sm me-2 ", :month => "form-select-sm me-2 w-50", :day => "form-select-sm" }, :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'] %>
+      </div>
+      <%= form.hidden_field :origin_id, :value => suggestion_to_id %>
+      <%= form.hidden_field :origin_type, :value => suggestion_to_type %>
+      <%= form.submit 'Sugerir', :class => 'mt-4 w-25 btn btn-primary align-self-end' %>
+    </div>
+  </div>
 
-  <div class="field">
+  <!--<div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
@@ -32,11 +50,14 @@
   </div>
 
   <div class="field">
-    <%= form.label :origin_id %>
-    <%= form.text_field :origin_id %>
+    <%= form.hidden_field :origin_id, :value => @id %>
+    <%= form.hidden_field :origin_type, :value => @type %>
+  </div>
+  
+  <div class="field">
   </div>
 
   <div class="actions">
     <%= form.submit %>
-  </div>
+  </div>-->
 <% end %>

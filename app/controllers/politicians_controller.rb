@@ -4,16 +4,21 @@ class PoliticiansController < ApplicationController
   # GET /politicians
   # GET /politicians.json
   def index
+    @parties = PoliticalParty.all.paginate(page: params[:page], per_page: 2)
     @politicians = Politician.all
   end
 
   # GET /politicians/1
   # GET /politicians/1.json
   def show
+    @politician = Politician.find(params[:id])
+    @news = @politician.news.order(params[:release]).paginate(page: params[:page])
+    @suggestion = News.new
   end
 
   # GET /politicians/new
   def new
+    @parties = PoliticalParty.order(:name).to_a
     @politician = Politician.new
   end
 
@@ -69,6 +74,6 @@ class PoliticiansController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def politician_params
-      params.require(:politician).permit(:name, :birthdate, :position, :political_compass, :previous_position, :education, :president, :political_party_id)
+      params.require(:politician).permit(:name, :birthdate, :position, :political_compass, :previous_position, :education, :president, :political_party_id, :picture)
     end
 end

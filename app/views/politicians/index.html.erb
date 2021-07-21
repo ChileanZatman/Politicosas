@@ -1,41 +1,85 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Politicians</h1>
+<center>
+  <h1>Politicos</h1>
+</center>
+<br/>
+  <% @parties.each do |party| %>
+    <div class="bg-primary text-white ps-3 pt-3 rounded">
+      <h2 > <%= party.name %>s</h2>
+      <hr/>
+    </div>
+      <div class="row row-cols-1 row-cols-lg-2 g-3 mb-2">
+        <% @politicians.each do |politician| %>
+          <div class="col">
+            <div class="card news-card overflow-hidden">
+              <a class="row g-0 h-100" href="/politicians/<%= politician.id %>" target="_blank">
+                <div class="col-4">
+                  <%= image_tag(politician.picture, class: "h-100 w-100 rounded-start") %>
+                </div>
+                <div class="col-8">
+                  <div class="card-body h-100">
+                    <h5><%= politician.name %></h5>
+                    <ul class="p-3 list-unstyled politician-details-list mb-0">
+                      <li>
+                        <i class="bi bi-clock-history me-2 fs-6 pe-1"></i> 
+                        <p>
+                          <%= ((Time.zone.now - politician.birthdate.to_time) / 1.year.seconds).floor  %> años
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <i class="bi bi-gear-wide me-2 fs-6 "></i>
+                          <%= politician.position %>
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        <% end %>
+      </div>
+  <% end %>
+  <div class="digg_pagination  mt-3 ">
+    <%= will_paginate @parties %>
+  </div>
+  
+<!--<table>-->
+<!--  <thead>-->
+<!--    <tr>-->
+<!--      <th>Name</th>-->
+<!--      <th>Birthdate</th>-->
+<!--      <th>Position</th>-->
+<!--      <th>Political compass</th>-->
+<!--      <th>Previous position</th>-->
+<!--      <th>Education</th>-->
+<!--      <th>President</th>-->
+<!--      <th>Political party</th>-->
+<!--      <th colspan="3"></th>-->
+<!--    </tr>-->
+<!--  </thead>-->
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Birthdate</th>
-      <th>Position</th>
-      <th>Political compass</th>
-      <th>Previous position</th>
-      <th>Education</th>
-      <th>President</th>
-      <th>Political party</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<!--  <tbody>-->
+<!--    <% @politicians.each do |politician| %>-->
+<!--      <tr>-->
+<!--        <td><%= politician.name %></td>-->
+<!--        <td><%= politician.birthdate %></td>-->
+<!--        <td><%= politician.position %></td>-->
+<!--        <td><%= politician.political_compass %></td>-->
+<!--        <td><%= politician.previous_position %></td>-->
+<!--        <td><%= politician.education %></td>-->
+<!--        <td><%= politician.president %></td>-->
+<!--        <td><%= politician.political_party_id %></td>-->
+<!--        <td><%= link_to 'Show', politician %></td>-->
+<!--        <td><%= link_to 'Edit', edit_politician_path(politician) %></td>-->
+<!--        <td><%= link_to 'Destroy', politician, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+<!--      </tr>-->
+<!--    <% end %>-->
+<!--  </tbody>-->
+<!--</table>-->
 
-  <tbody>
-    <% @politicians.each do |politician| %>
-      <tr>
-        <td><%= politician.name %></td>
-        <td><%= politician.birthdate %></td>
-        <td><%= politician.position %></td>
-        <td><%= politician.political_compass %></td>
-        <td><%= politician.previous_position %></td>
-        <td><%= politician.education %></td>
-        <td><%= politician.president %></td>
-        <td><%= politician.political_party_id %></td>
-        <td><%= link_to 'Show', politician %></td>
-        <td><%= link_to 'Edit', edit_politician_path(politician) %></td>
-        <td><%= link_to 'Destroy', politician, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<!--<br>-->
 
-<br>
-
-<%= link_to 'New Politician', new_politician_path %>
+<!--<%= link_to 'New Politician', new_politician_path %>-->

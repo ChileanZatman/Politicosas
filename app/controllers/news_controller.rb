@@ -1,10 +1,10 @@
 class NewsController < ApplicationController
-  before_action :set_news, only: [:show, :edit, :update, :destroy]
+  before_action :set_news, only: [:show, :edit, :update, :destroy, :approve]
 
   # GET /news
   # GET /news.json
   def index
-    @news = News.all
+    @news = News.order(params[:release]).paginate(page: params[:page], per_page: 16)
   end
 
   # GET /news/1
@@ -16,7 +16,11 @@ class NewsController < ApplicationController
   def new
     @news = News.new
   end
-
+  
+  def mod 
+    @news = News.order(params[date: :asc])
+  end
+  
   # GET /news/1/edit
   def edit
   end
@@ -28,8 +32,8 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to @news, notice: 'News was successfully created.' }
-        format.json { render :show, status: :created, location: @news }
+        format.html { redirect_to @news.origin, notice: 'News was successfully created.' }
+        format.json { render :show, status: :created, location: @news.origin }
       else
         format.html { render :new }
         format.json { render json: @news.errors, status: :unprocessable_entity }
@@ -60,7 +64,11 @@ class NewsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def approve
+    @news.update(state: true)
+  end  
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_news
@@ -69,6 +77,6 @@ class NewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def news_params
-      params.require(:news).permit(:title, :link, :release, :email, :origin_id, :origin_type)
+      params.require(:news).permit(:title, :link, :release, :email, :origin_id, :origin_type, :state)
     end
 end

@@ -1,44 +1,120 @@
-<p id="notice"><%= notice %></p>
+<div class="container pt-4">
+  <div class="row">
+    <div class="col-3 bg-white rounded p-0 fit-content shadow-sm">
+      <div>
+        <%= image_tag(@politician.picture, class: "rounded-top img-fluid") %>
+      </div>
+      <div class="p-0">
+        <div class="bg-primary text-white p-3">
+          <h4>
+            <strong><%= @politician.name %></strong>
+          </h4>
+          <p class="mb-0">
+            <%= @politician.position %>
+          </p>
+        </div>
+        <ul class="p-3 list-unstyled politician-details-list mb-0">
+          <li>
+            <i class="bi bi-calendar-event me-2 fs-4 pt-1"></i>
+            <p>
+              <strong>Fecha de nacimiento:</strong>
+              <br/>
+              <%= @politician.birthdate %>
+            </p>
+          </li>
+          <li>
+              
+            <i class="bi bi-flag me-2 fs-4 pt-1"></i>
+            <p>
+              <strong>Partido politico:</strong>
+              <br/>
+              <%= @politician.political_party.name %>
+            </p>
+          </li>
+          <li>
+            <i class="bi bi-compass me-2 fs-4 pt-1"></i>
+            <p>
+              <strong>Compas politico:</strong>
+              <br/>  
+              <%= @politician.political_compass %>
+            </p>
+          </li>
+          <li>
+            <i class="bi bi-person-lines-fill me-2 fs-4 pt-1"></i>
+            <p>
+              <strong>Cargos anteriores:</strong>
+              <br/>
+              <%= @politician.previous_position %>
+            </p>
+          </li>
+          <li>
+            <i class="bi bi-award me-2 fs-4 pt-1"></i>
+            <p>
+              <strong>Educacion:</strong>
+              <br/>
+              <%= @politician.education %>
+            </p>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+    <div class="col-8 offset-1 rounded p-4">
+      <h4 class="fw-bold mb-4"><strong>Ultimas noticias</strong></h4>
+      <div class="row row-cols-1 g-3">
+        <%= render 'layouts/news' %>
+      </div>
+    </div>
+  </div>
+      
+      <%= render 'news/form', news: @suggestion, suggestion_to_name: @politician.name, suggestion_to_id: @politician.id, suggestion_to_type: @politician.class %>
+</div>
+   
 
-<p>
-  <strong>Name:</strong>
-  <%= @politician.name %>
-</p>
 
-<p>
-  <strong>Birthdate:</strong>
-  <%= @politician.birthdate %>
-</p>
 
-<p>
-  <strong>Position:</strong>
-  <%= @politician.position %>
-</p>
 
-<p>
-  <strong>Political compass:</strong>
-  <%= @politician.political_compass %>
-</p>
+<!--<p id="notice"><%= notice %></p>-->
 
-<p>
-  <strong>Previous position:</strong>
-  <%= @politician.previous_position %>
-</p>
+<!--<p>-->
+<!--  <strong>Name:</strong>-->
+<!--  <%= @politician.name %>-->
+<!--</p>-->
 
-<p>
-  <strong>Education:</strong>
-  <%= @politician.education %>
-</p>
+<!--<p>-->
+<!--  <strong>Birthdate:</strong>-->
+<!--  <%= @politician.birthdate %>-->
+<!--</p>-->
 
-<p>
-  <strong>President:</strong>
-  <%= @politician.president %>
-</p>
+<!--<p>-->
+<!--  <strong>Position:</strong>-->
+<!--  <%= @politician.position %>-->
+<!--</p>-->
 
-<p>
-  <strong>Political party:</strong>
-  <%= @politician.political_party_id %>
-</p>
+<!--<p>-->
+<!--  <strong>Political compass:</strong>-->
+<!--  <%= @politician.political_compass %>-->
+<!--</p>-->
 
-<%= link_to 'Edit', edit_politician_path(@politician) %> |
-<%= link_to 'Back', politicians_path %>
+<!--<p>-->
+<!--  <strong>Previous position:</strong>-->
+<!--  <%= @politician.previous_position %>-->
+<!--</p>-->
+
+<!--<p>-->
+<!--  <strong>Education:</strong>-->
+<!--  <%= @politician.education %>-->
+<!--</p>-->
+
+<!--<p>-->
+<!--  <strong>President:</strong>-->
+<!--  <%= @politician.president %>-->
+<!--</p>-->
+
+<!--<p>-->
+<!--  <strong>Political party:</strong>-->
+<!--  <%= @politician.political_party_id %>-->
+<!--</p>-->
+
+<!--<%= link_to 'Edit', edit_politician_path(@politician) %> |-->
+<!--<%= link_to 'Back', politicians_path %>-->

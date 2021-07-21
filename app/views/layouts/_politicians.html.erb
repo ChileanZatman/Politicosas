@@ -1,0 +1,28 @@
+<% @politicians.each do |politician| %>
+  <div class="card mini-politician-card overflow-hidden">
+    <a class="row g-0 h-100" href="/politicians/<%= politician.id %>" target="_blank">
+      <!--<div class="col-4">-->
+      <!--  <%= image_tag(politician.picture, class: "h-100 w-100 rounded-start") %>-->
+      <!--</div>-->
+      <div class="col">
+        <div class="card-body h-100">
+          <h5><%= politician.name %></h5>
+          <ul class="p-3 list-unstyled politician-details-list mb-0">
+            <li>
+              <i class="bi bi-clock-history me-2 fs-6 pe-1"></i> 
+              <p>
+                <%= ((Time.zone.now - politician.birthdate.to_time) / 1.year.seconds).floor %> años
+              </p>
+            </li>
+            <li>
+              <p>
+                <i class="bi bi-gear-wide me-2 fs-6 "></i>
+                <%= politician.position %>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </a>
+  </div>
+<% end %>

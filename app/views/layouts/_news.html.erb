@@ -1,0 +1,21 @@
+<% @news.each do |news| %>
+    <div class="col">
+      <div class="card news-card overflow-hidden">
+        <a class="row g-0 h-100" href="<%= news.link %>" target="_blank">
+          <div class="col-4 h-100">
+            <img src=<%= Faker::LoremFlickr.image(size: "400x300", search_terms: ['sports'])  %> class="h-100 w-100 rounded-start" />
+          </div>
+          <div class="col-8">
+            <div class="card-body h-100">
+              <h5><%= news.title %></h5>
+              <p class="card-text"><small class="text-primary"><%= news.release %></small></p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  <% end %>
+  <div class="digg_pagination mt-3">
+    <%= will_paginate @news %>
+  </div>
+    

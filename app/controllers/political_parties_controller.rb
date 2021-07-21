@@ -6,10 +6,24 @@ class PoliticalPartiesController < ApplicationController
   def index
     @political_parties = PoliticalParty.all
   end
+  
+  # GET /political_parties/mod
+  # GET /political_parties.json
+  def mod
+    if params[:search]
+      @political_parties = PoliticalParty.where("name LIKE :search OR coalition LIKE :search", search: "%#{params[:search]}%")
+    else
+      @political_parties = PoliticalParty.all
+    end
+  end
 
   # GET /political_parties/1
   # GET /political_parties/1.json
   def show
+    @party = PoliticalParty.find(params[:id])
+    @news = @party.news.order(params[:release]).paginate(page: params[:page], per_page: 5)
+    @politicians = @party.politicians.order(params[:birthdate]).paginate(page: params[:page], per_page: 5)
+    @suggestion = News.new
   end
 
   # GET /political_parties/new
@@ -69,6 +83,6 @@ class PoliticalPartiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def political_party_params
-      params.require(:political_party).permit(:name, :founding, :political_compass, :coalition, :founding_ideology, :principles)
+      params.require(:political_party).permit(:name, :founding, :political_compass, :coalition, :founding_ideology, :principles, :picture)
     end
 end

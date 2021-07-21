@@ -1,34 +1,86 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @political_party.name %>
-</p>
+<div class="container">
+  <div class="row mb-4">
+    <div class="col px-0">
+      <div class="card party-info-card bg-white">
+        <div class="row g-0 flex-nowrap h-100">
+          <div class="col flex-fill">
+            <div class="card-body p-4">
+              <h1 class="card-title mb-3"><strong><%= @political_party.name %></strong></h1>
+              <% if @politicians.empty? %>
+                <p class="card-text fs-5 lh-sm">
+                  El partido "<%= @political_party.name %>" de la <%= @political_party.political_compass %> fue fundado el <%= @political_party.founding %>,
+                  bajo las ideologias del <%= @political_party.founding_ideology %>.
+                  y pertenece a la coalicion <%= @political_party.coalition %>
+                </p>
+              <% else %>
+                <p class="card-text fs-5 lh-sm">
+                  El partido "<%= @political_party.name %>" de la <%= @political_party.political_compass %> fue fundado el <%= @political_party.founding %>,
+                  bajo las ideologias del <%= @political_party.founding_ideology %>.
+                  Actualmente liderado por <%= @politicians.first.name %>,
+                  y pertenece a la coalicion <%= @political_party.coalition %>
+                </p>
+              <% end %>
+              <a class="card-text "><p class="text-end fs-6">Declaracion de principios</p></a>
+              
+            </div>
+          </div>
+          <div class="col h-100">
+            <%= image_tag(@political_party.picture, class: "h-100 w-auto rounded-end political-party-logo") %>
+<!--            <img src="https://via.placeholder.com/300x250" class="h-100 w-auto rounded-end political-party-logo" />-->          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 rounded">
+        <h4 class="fw-bold mb-4 pt-3 text-center"><strong>Miembros</strong></h4>
+          <div class="row row-cols-1 g-3">
+            <%= render 'layouts/politicians' %>
+          </div>
+    </div>
+    <div class="col-8 offset-1 bg-white rounded px-4 pt-2">
+      <h4 class="fw-bold mb-4 pt-3"><strong>Ultimas noticias</strong></h4>
+      <div class="row row-cols-1 g-3">
+        <%= render 'layouts/news' %>
+      </div>
+    </div>
+    <%= render 'news/form', news: @suggestion, suggestion_to_name: @political_party.name, suggestion_to_id: @political_party.id, suggestion_to_type: @political_party.class %>
+</div>
 
-<p>
-  <strong>Founding:</strong>
-  <%= @political_party.founding %>
-</p>
 
-<p>
-  <strong>Political compass:</strong>
-  <%= @political_party.political_compass %>
-</p>
+<!--<p>-->
+<!--  <strong>Name:</strong>-->
+<!--  <%= @political_party.name %>-->
+<!--</p>-->
 
-<p>
-  <strong>Coalition:</strong>
-  <%= @political_party.coalition %>
-</p>
+<!--<p>-->
+<!--  <strong>Founding:</strong>-->
+<!--  <%= @political_party.founding %>-->
+<!--</p>-->
 
-<p>
-  <strong>Founding ideology:</strong>
-  <%= @political_party.founding_ideology %>
-</p>
+<!--<p>-->
+<!--  <strong>Political compass:</strong>-->
+<!--  <%= @political_party.political_compass %>-->
+<!--</p>-->
 
-<p>
-  <strong>Principles:</strong>
-  <%= @political_party.principles %>
-</p>
+<!--<p>-->
+<!--  <strong>Coalition:</strong>-->
+<!--  <%= @political_party.coalition %>-->
+<!--</p>-->
 
-<%= link_to 'Edit', edit_political_party_path(@political_party) %> |
-<%= link_to 'Back', political_parties_path %>
+<!--<p>-->
+<!--  <strong>Founding ideology:</strong>-->
+<!--  <%= @political_party.founding_ideology %>-->
+<!--</p>-->
+
+<!--<p>-->
+<!--  <strong>Principles:</strong>-->
+<!--  <%= @political_party.principles %>-->
+<!--</p>-->
+
+
+<!--<%= link_to 'Edit', edit_political_party_path(@political_party) %> |-->
+<!--<%= link_to 'Back', political_parties_path %>-->
+<!--<p id="notice"><%= notice %></p>-->

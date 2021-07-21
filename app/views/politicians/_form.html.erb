@@ -48,8 +48,13 @@
 
   <div class="field">
     <%= form.label :political_party_id %>
-    <%= form.text_field :political_party_id %>
+    <%= form.collection_select :political_party_id, PoliticalParty.order(:name), :id, :name %>
   </div>
+  <div>
+    <%= form.label :picture %>
+    <%= form.file_field :picture %>
+  </div>
+    
 
   <div class="actions">
     <%= form.submit %>
