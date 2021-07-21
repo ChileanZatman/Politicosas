@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-  resources :news
+  resources :news do
+    patch "approve", on: :member
+  end
   resources :politicians do
     post :news, on: :member
   end
   resources :political_parties do
     post :news, on: :member
   end
-
   resources :users
   root 'static_pages#home'
   get '/politicos', to: 'politicians#index'

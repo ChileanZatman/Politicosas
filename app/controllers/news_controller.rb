@@ -18,7 +18,11 @@ class NewsController < ApplicationController
   end
   
   def mod 
-    @news = News.order(params[date: :asc])
+    @news = News.where(state: false).order(params[date: :asc]).paginate(page: params[:page], per_page: 8)
+  end
+  
+  def record
+     @news = News.where(state: false).order(params[date: :asc]).paginate(page: params[:page], per_page: 8)
   end
   
   # GET /news/1/edit
@@ -60,7 +64,7 @@ class NewsController < ApplicationController
   def destroy
     @news.destroy
     respond_to do |format|
-      format.html { redirect_to news_index_url, notice: 'News was successfully destroyed.' }
+      format.html { redirect_to '/modnoticias', notice: 'News was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

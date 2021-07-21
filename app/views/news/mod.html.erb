@@ -1,7 +1,7 @@
 <center>
   <h1 class="mt-3">Sugerencias</h1>
   <div class="row row-cols-1 g-3 mt-2 max-width-900 align-self-center">
-    <% @news.where(state: false).each do |news| %>
+    <% @news.each do |news| %>
       <div class="col">
         <div class="card news-card overflow-hidden ">
           <div class="row g-0 h-100">
@@ -21,15 +21,15 @@
             <div class="col-2">
               <div class="btn-group-vertical h-100 w-100" role="group">
                 <!--<%= link_to 'Aprobar', news %>-->
-                <%= link_to modnoticias(news), method: :post, class: "btn btn-success d-flex align-items-center justify-content-center" do %>
+                <%= link_to approve_news_path(news) , method: :patch, class: "btn btn-success d-flex align-items-center justify-content-center" do %>
                   <span>Aprobar</span>
                 <% end %>
-                <%= link_to news, method: :get, class: "btn btn-danger d-flex align-items-center justify-content-center" do %>
+                <%= link_to news, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger d-flex align-items-center justify-content-center" do %>
                   <span>Eliminar</span>
                 <% end %>
-                <%= link_to news, method: :get, class: "btn btn-secondary d-flex align-items-center justify-content-center" do %>
+                <!--<%= link_to news, method: :get, class: "btn btn-secondary d-flex align-items-center justify-content-center" do %>
                   <span>Editar</span>
-                <% end %>
+                <% end %>-->
                 <!--<button type="button" class="btn btn-success" >Aprobar</button>-->
                 <!--<button type="button" class="btn btn-danger">Eliminar</button>
                 <button type="button" class="btn btn-secondary">Editar</button>-->
@@ -39,6 +39,9 @@
         </div>
       </div>
     <% end %>
+    <div class="digg_pagination  mt-3 ">
+      <%= will_paginate @news %>
+    </div>
   </div>
 </center>
 
